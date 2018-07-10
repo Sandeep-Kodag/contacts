@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ContactService } from './contact.service';
 
 @Component({
@@ -8,8 +8,7 @@ import { ContactService } from './contact.service';
 })
 export class ContactComponent implements OnInit {
   title = 'Contacts';
-
-  constructor(private contactService: ContactService) { }
+  constructor(private contactService: ContactService, private modalService: NgbModal) { }
   contacts: Contact[];
   ngOnInit() {
     this.getAllContacts();
@@ -23,6 +22,7 @@ export class ContactComponent implements OnInit {
   addContact() {
 
   }
+
   editContact(item: Contact) {
     //this.contactService.updateContact().subscribe((data: any) => {
     //  this.contacts = data;

@@ -1,3 +1,5 @@
+
+import { NgbModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -24,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     HttpClientModule,
     DataTableModule,
+    NgbModule.forRoot(),
     RouterModule.forRoot(ROUTES)
   ],
   providers: [
