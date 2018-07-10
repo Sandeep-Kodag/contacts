@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { DataTableModule } from 'angular-6-datatable';
+
 
 import { AppComponent } from './app.component';
 import { ContactComponent } from './contact/contact.component';
@@ -21,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     HttpClientModule,
+    DataTableModule,
     RouterModule.forRoot(ROUTES)
   ],
   providers: [

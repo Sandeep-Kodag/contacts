@@ -1,20 +1,65 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="menubar">
-    <h3>
-        {{ title }}
-    </h3>
+  <h3>
+    {{ title }}
+  </h3>
 </div>
-<table>
+
+<button class="btn btn-outline-info">
+  <i class="fa fa-plus"></i>&emsp;New Contact
+</button>
+<table class="table table-stripped table-hover" [mfData]="contacts" #mf="mfDataTable" [mfRowsOnPage]="8">
+  <thead>
     <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Phone No</th>
+      <th>
+        #
+      </th>
+      <th>
+        <mfDefaultSorter by="first_name">First Name</mfDefaultSorter>
+      </th>
+      <th>
+        <mfDefaultSorter by="last_name">Last Name</mfDefaultSorter>
+      </th>
+      <th>
+        Email
+      </th>
+      <th>
+        Phone No
+      </th>
+      <th>
+        Actions
+      </th>
     </tr>
-    <tr *ngFor="let contact of contacts">
-        <td>{{contact.first_name}}</td>
-        <td>{{contact.last_name}}</td>
-        <td>{{contact.email}}</td>
-        <td>{{contact.phoneno}}</td>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of mf.data">
+      <td>
+        <button class="btn" (click)="editContact(item)">
+          <i class="fa fa-pencil">
+          </i>
+        </button>
+      </td>
+      <td>{{item.first_name}}</td>
+      <td>{{item.last_name}}</td>
+      <td>{{item.email}}</td>
+      <td>{{item.phoneno}}</td>
+      <td>
+        <button class="btn" (click)="deleteContact(item)">
+          <i class="fa fa-trash"></i>
+        </button>
+      </td>
     </tr>
+    <tr *ngIf="mf.data.length==0">
+      <td colspan="6">
+        No data!
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="6">
+        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+      </td>
+    </tr>
+  </tfoot>
 </table>
