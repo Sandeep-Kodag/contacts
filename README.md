@@ -11,7 +11,6 @@ Verify that you are running at least Node.js version 8.x or greater and npm vers
 ## Table of Contents
 
 * [Installation](#installation)
-* [Usage](#usage)
 * [Serving a New Project](#serving-an-angular-project-via-a-development-server)
 
 
