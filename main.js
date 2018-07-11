@@ -566,7 +566,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<div class=\"menubar\">\r\n    <h3>\r\n        {{ title }}\r\n    </h3>\r\n</div>\r\n<ul>\r\n    <li>\r\n        <a [routerLink]=\"['/contacts']\">\r\n            <img src=\"assets/contacts.ico\" class=\"icon\" />\r\n        </a>\r\n    </li>\r\n</ul>"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<div class=\"menubar\">\r\n    <h3>\r\n        {{ title }}\r\n    </h3>\r\n</div>\r\n<ul>\r\n    <li>\r\n        <a [routerLink]=\"['/contacts']\">\r\n            <img src=\"/assets/contacts.ico\" class=\"icon\" />\r\n        </a>\r\n    </li>\r\n</ul>"
 
 /***/ }),
 
