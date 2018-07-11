@@ -1,78 +1,124 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="contactModalLabel">Contact Details</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+            </div>
+            <div class="modal-body" *ngIf="contact">
+                <form>
+                    <div class="form-group">
+                        <label for="first_name" class="control-label">First Name</label>
+                        <input name="first_name" class="form-control" [(ngModel)]="contact.first_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name" class="control-label">Last Name</label>
+                        <input name="last_name" class="form-control" [(ngModel)]="contact.last_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="control-label">Email</label>
+                        <input name="email" type="email" class="form-control" [(ngModel)]="contact.email">
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneno" class="control-label">Phone No</label>
+                        <input name="phoneno" type="tel" class="form-control" [(ngModel)]="contact.phoneno">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveData(contact)">Save changes</button>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-<div class="menubar">
-  <h3>
-    {{ title }}
-  </h3>
 </div>
 
-<button class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal">
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="deleteModalLabel">Delete Contact </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body" *ngIf="contact">
+                <form>
+                    <div class="form-group">
+                        <label class="control-label">Are you sure you want to permanently delete this contact?</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal" (click)="deleteContact(contact)">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="menubar">
+    <h3>
+        {{ title }}
+    </h3>
+</div>
+<div class="col-md-12">
+    <div class="pull-left col-md-6">
+        <button class="btn btn-outline-info" data-toggle="modal" data-target="#contactModal" (click)="openModal()">
   <i class="fa fa-plus"></i>&emsp;New Contact
 </button>
-<table class="table table-stripped table-hover" [mfData]="contacts" #mf="mfDataTable" [mfRowsOnPage]="8">
-  <thead>
-    <tr>
-      <th>
-        #
-      </th>
-      <th>
-        <mfDefaultSorter by="first_name">First Name</mfDefaultSorter>
-      </th>
-      <th>
-        <mfDefaultSorter by="last_name">Last Name</mfDefaultSorter>
-      </th>
-      <th> Email </th>
-      <th> Phone No </th>
-      <th> Actions </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of mf.data">
-      <td>
-        <button class="btn" (click)="editContact(item)">
-          <i class="fa fa-pencil">
-          </i>
-        </button>
-      </td>
-      <td>{{item.first_name}}</td>
-      <td>{{item.last_name}}</td>
-      <td>{{item.email}}</td>
-      <td>{{item.phoneno}}</td>
-      <td>
-        <button class="btn" (click)="deleteContact(item)">
-          <i class="fa fa-trash"></i>
-        </button>
-      </td>
-    </tr>
-    <tr *ngIf="mf.data.length==0">
-      <td colspan="6">
-        No data!
-      </td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td colspan="6">
-        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-      </td>
-    </tr>
-  </tfoot>
+    </div>
+    <div class="col-md-6">
+        <input name="search" type="search" [(ngModel)]="searchText" class="form-control" (keyup)="filter()" placeholder="Search by name, email">
+    </div>
+</div>
+<table class="table table-stripped table-hover" [mfData]="filteredContacts" #mf="mfDataTable" [mfRowsOnPage]="8">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                <mfDefaultSorter by="first_name">First Name</mfDefaultSorter>
+            </th>
+            <th>
+                <mfDefaultSorter by="last_name">Last Name</mfDefaultSorter>
+            </th>
+            <th> Email </th>
+            <th> Phone No </th>
+            <th> Actions </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of mf.data">
+            <td>
+                <button class="btn" (click)="openModal(item)" data-toggle="modal" data-target="#contactModal">
+                    <i class="fa fa-pencil"></i>
+            </button>
+            </td>
+            <td>{{item.first_name}}</td>
+            <td>{{item.last_name}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.phoneno}}</td>
+            <td>
+                <button class="btn" (click)="openModal(item,true)" data-toggle="modal" data-target="#deleteModal">
+                <i class="fa fa-trash"></i>
+                </button>
+            </td>
+        </tr>
+        <tr *ngIf="mf.data.length==0">
+            <td colspan="6">
+                No data!
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="6">
+                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+            </td>
+        </tr>
+    </tfoot>
 </table>

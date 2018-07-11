@@ -39,6 +39,19 @@ export class HttpService {
         }));
   }
 
+  public put(url: string, data?: any, successMsg?: string, errorMsg?: string, auth: boolean = true): Observable<Response> {
+    return this.http.put(environment.apiUrl + url, data, this.GetAuthHeaders(auth))
+      .pipe(
+        map((res: Response) => {
+          // Toast the Success Message
+          return res;
+        })
+        , catchError((err: Response) => {
+          // Toast the Error Message
+          return Observable.throw(err);
+        }));
+  }
+
   private GetAuthHeaders(auth?: boolean) {
     if (auth) {
       const token = '5b433443529edc5997948a96';

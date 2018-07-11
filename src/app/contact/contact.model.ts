@@ -1,7 +1,17 @@
-class Contact{
-    public first_name: string;
-    public last_name:string;
-    public email:string;
-    public phoneno:string;
-    public status:boolean;
+export class Contact {
+    _id: string;
+    first_name: string;
+    last_name: string;
+    email: string;
+    phoneno: string;
+    status: boolean;
+    constructor() {
+        this._id = '';
+        this.first_name = '';
+        this.last_name = '';
+        this.email = '';
+        this.phoneno = '';
+        this.status = true;
+    }
+
 }
