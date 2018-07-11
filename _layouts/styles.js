@@ -100,7 +100,7 @@ module.exports = "/*\r\n* Skeleton V2.0.4\r\n* Copyright 2014, Dave Gamache\r\n*
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* You can add global styles to this file, and also import other style files */\n\nbody {\n    font-family: 'Open Sans', sans-serif;\n    background: rgb(246, 248, 249);\n    background: linear-gradient(to bottom, rgba(246, 248, 249, 1) 0%, rgba(229, 235, 238, 1) 50%, rgba(215, 222, 227, 1) 51%, rgba(245, 247, 249, 1) 100%);\n    background-repeat: no-repeat;\n}\n\n.menubar {\n    text-align: center;\n    padding-left: 15px;\n}"
+module.exports = "/* You can add global styles to this file, and also import other style files */\r\n\r\nbody {\r\n    font-family: 'Open Sans', sans-serif;\r\n    background: rgb(246, 248, 249);\r\n    background: linear-gradient(to bottom, rgba(246, 248, 249, 1) 0%, rgba(229, 235, 238, 1) 50%, rgba(215, 222, 227, 1) 51%, rgba(245, 247, 249, 1) 100%);\r\n    background-repeat: no-repeat;\r\n}\r\n\r\n.menubar {\r\n    text-align: center;\r\n    padding-left: 15px;\r\n}"
 
 /***/ }),
 

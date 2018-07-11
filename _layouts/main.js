@@ -142,7 +142,7 @@ var AppModule = /** @class */ (function () {
                 angular_6_datatable__WEBPACK_IMPORTED_MODULE_3__["DataTableModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"],
-                _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(_app_routes__WEBPACK_IMPORTED_MODULE_7__["ROUTES"])
+                _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(_app_routes__WEBPACK_IMPORTED_MODULE_7__["ROUTES"], { useHash: true })
             ],
             providers: [
                 _common__WEBPACK_IMPORTED_MODULE_10__["HttpService"]
@@ -566,7 +566,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<div class=\"menubar\">\n    <h3>\n        {{ title }}\n    </h3>\n</div>\n<ul>\n    <li>\n        <a href=\"/contacts\">\n            <img src=\"../assets/contacts.ico\" class=\"icon\" />\n        </a>\n    </li>\n</ul>"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\r\n<div class=\"menubar\">\r\n    <h3>\r\n        {{ title }}\r\n    </h3>\r\n</div>\r\n<ul>\r\n    <li>\r\n        <a [routerLink]=\"['/contacts']\">\r\n            <img src=\"../assets/contacts.ico\" class=\"icon\" />\r\n        </a>\r\n    </li>\r\n</ul>"
 
 /***/ }),
 
@@ -592,15 +592,21 @@ module.exports = "ul {\n  list-style-type: none; }\n\n.icon {\n  height: 40px;\n
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MenuComponent", function() { return MenuComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
 
 var MenuComponent = /** @class */ (function () {
-    function MenuComponent() {
+    function MenuComponent(router) {
+        this.router = router;
         this.title = 'Menu';
     }
     MenuComponent = __decorate([
@@ -608,7 +614,8 @@ var MenuComponent = /** @class */ (function () {
             selector: 'app-menu',
             template: __webpack_require__(/*! ./menu.component.html */ "./src/app/menu/menu.component.html"),
             styles: [__webpack_require__(/*! ./menu.component.scss */ "./src/app/menu/menu.component.scss")]
-        })
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
     ], MenuComponent);
     return MenuComponent;
 }());
