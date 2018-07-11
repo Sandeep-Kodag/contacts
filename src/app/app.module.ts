@@ -29,7 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
     DataTableModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES, { useHash: true })
   ],
   providers: [
     HttpService
